@@ -1,5 +1,5 @@
 #include<iostream>
-using namespace std;
+
 
 
 // vous vous en doutez mais le nom de l'argument est mal choisi ...

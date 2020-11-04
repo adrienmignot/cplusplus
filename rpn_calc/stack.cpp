@@ -1,5 +1,4 @@
 #include<iostream>
-using namespace std;
 
 void push(int liste_depart[], int* top, int ajout){
   // c'est un tableau à la c pas de append c'est pas du python
@@ -31,4 +30,12 @@ int* init_stack(int taille){
 
 void delete_stack(int stack[]){
   delete [] stack;
+}
+
+void print_stack(int liste_depart[], int top){
+  std::cout << "[";
+  for (int i = 1; i<=top; i++){
+    std::cout << liste_depart[i-1] << ' ';
+  }
+  std::cout << "[" << std::endl;
 }

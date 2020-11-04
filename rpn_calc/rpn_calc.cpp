@@ -1,7 +1,7 @@
 #include<iostream>
 #include"stack.h"
 
-bool is_operand (char *pouet){
+bool is_operand (char *entree){
   // parenthésez  les conditions
   // utiliser or et pas ||
 
@@ -12,17 +12,12 @@ bool is_operand (char *pouet){
 
   // vous voulez que le code de pouet[0] soit entre le code de '0' et
   // le code '9'
-  if ((pouet[0] >= '0') and (pouet[0] <= '9')) {
-      return true;
-    }
-  else {
-    return false;
-  }
+  return (entree[0] >= 0) and (entree[0] <= 9);
 }
 
 // pas vraiment c'est un opérateur quand c'est un '+' ou un '-' ...
-bool is_operator(char *tut){
-    return not is_operand(tut);
+bool is_operator(char *entree){
+    return ((char(entree[0]) == '+') or (char(entree[0]) == '-') or (char(entree[0]) == 'x') or (char(entree[0]) == '/') or (char(entree[0]) == '!'));
 }
 
 int rpn_eval(int nombre_elements, char* entrees []){
@@ -44,12 +39,13 @@ int rpn_eval(int nombre_elements, char* entrees []){
       push(liste_depart, &top, atoi(token));
     }
     else if (token[0] == '!'){
-      liste_depart[top] = -liste_depart[top];
+      int temp = pop(liste_depart, &top);
+      push(liste_depart, &top, -temp);
     }
     else if (token[0] == 'x'){
       int temp1 = pop(liste_depart, &top);
       int temp2 = pop(liste_depart, &top);
-      push(liste_depart, &top, temp1*temp2);
+      push(liste_depart, &top, temp2*temp1);
     }
     else if (token[0] == '/'){
       int temp1 = pop(liste_depart, &top);
@@ -59,19 +55,15 @@ int rpn_eval(int nombre_elements, char* entrees []){
     else if (token[0] == '+'){
       int temp1 = pop(liste_depart, &top);
       int temp2 = pop(liste_depart, &top);
-      push(liste_depart, &top, temp1 + temp2);
+      push(liste_depart, &top, temp2 + temp1);
     }
     else if (token[0] == '-'){
       int temp1 = pop(liste_depart, &top);
       int temp2 = pop(liste_depart, &top);
       push(liste_depart, &top, temp2 - temp1);
     }
-  std::cout << "[";
-  for (int i = 1; i<=top; i++){
-    std::cout << liste_depart[i-1] << ' ';
-  }
-  std::cout << "[" << std::endl;
   
+    print_stack(liste_depart, top);
   }
   
   int stock = liste_depart[0];
