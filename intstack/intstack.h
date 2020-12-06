@@ -8,7 +8,8 @@ public:
             tab = new int [size];
         }
         else {
-            std::cout << "taille inférieure ou égale à zéro\n"
+            std::cout << "taille inférieure ou égale à zéro\n";
+            throw(1);
         }
     }
 
@@ -23,7 +24,7 @@ public:
     }
     int pop (){
         if (not is_empty()){
-            top = top-1
+            top = top-1;
             return tab[top];
         } else {
             std::cout << "la pile est vide";
@@ -53,9 +54,9 @@ public:
 
 
 private:
-    int top;
-    int *tab;
     int size;
+    int *tab;
+    int top;
 
 
 };
