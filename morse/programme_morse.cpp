@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "dictionnaire_et_fonctions.cpp"
+#include "dictionnaire_et_fonctions.h"
 
 std::string traduction() {
     std::cout << "  1) Traduire un message du français en un texte morse" << std::endl;
@@ -13,7 +13,7 @@ std::string traduction() {
        std::cout << "tapez le texte que vous souhaitez voir converti en un fichier audio morse" << std::endl;
        std::string texte_entree;
        std::cin >> texte_entree;
-       std::string texte_sortie = traduction_message_francais_vers_morse(texte_entree);
+       std::string texte_sortie = trad_message_fr_to_morse(texte_entree);
        return texte_sortie;}
 
     else{return "1";};
